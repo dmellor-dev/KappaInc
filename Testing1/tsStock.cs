@@ -85,5 +85,135 @@ namespace Testing1
             someStock.NextRestock = TestData;
             Assert.AreEqual(someStock.NextRestock, TestData);
         }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestItemIDNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.ItemID != 2)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestItemNameNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.ItemName != "HP v24i Full HD")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestItemTypeNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.ItemType != "Monitor")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStockQuantityNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.StockQuantity != 15)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPriceNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.Price != 100)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAvailableNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.Available != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSupplierNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.Supplier != "HP")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestNextRestockNoFound()
+        {
+            clsStock someStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            int ItemID = 2;
+            Found = someStock.Find(ItemID);
+            if (someStock.NextRestock != Convert.ToDateTime("26/07/2021"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }

@@ -7,10 +7,26 @@
     <title></title>
 </head>
 <body>
-    This is the orders data entry page. I am now testing the github workaround on VMWare. I am now showing people workflow stuff.
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
+   <form id="form1" runat="server">
+       <div>
+
+           <asp:Label ID="lblAddressNo" runat="server" Text="Address Number"></asp:Label>
+           <asp:TextBox ID="txtAddressNumber" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblHouseNumber" runat="server" Text="House Number "></asp:Label>
+           <asp:TextBox ID="txtHouseNumber" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblStreet" runat="server" Text="Street "></asp:Label>
+           <asp:TextBox ID="txtStreet" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblTown" runat="server" Text="Town "></asp:Label>
+           <asp:TextBox ID="txtTown" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblPostcode" runat="server" Text="Postcode "></asp:Label>
+           <asp:TextBox ID="txtPostcode" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblCounty" runat="server" Text="County "></asp:Label>
+           <asp:TextBox ID="txtCounty" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblDateAdded" runat="server" Text="Date Added "></asp:Label>
+           <asp:TextBox ID="txtDateAdded" runat="server"></asp:TextBox><br />
+       </div>
+           
+      
+   </form>
 </body>
 </html>

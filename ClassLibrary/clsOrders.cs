@@ -6,12 +6,13 @@ namespace ClassLibrary
     {
 
         public bool Active { get; set; }
-        public DateTime ExpectedDeliveryDate { get; set; }
+        public DateTime OrderDeliveryDate { get; set; }
         public int OrderId { get; set; }
-        public string OrderContents { get; set; }
-        public bool DispatchedStatus { get; set; }
-        public double TotalPrice { get; set; }
         public string DeliveryAddress { get; set; }
-        public bool PaymentConfirmed { get; set; }
+
+        public bool DispatchedStatus { get; set; }
+        public double UnitPrice { get; set; }
+        public int Quantity { get; set; }
+        public string ProductCode { get; set; }
     }
 }

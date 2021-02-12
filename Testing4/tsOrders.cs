@@ -32,22 +32,14 @@ namespace Testing4
             Assert.AreEqual(AnOrder.OrderId, TestData);
         }
 
+       
         [TestMethod]
-        public void OrderContentsOK()
-        {
-            clsOrders AnOrder = new clsOrders();
-            String TestData = "Some products in an order";
-            AnOrder.OrderContents = TestData;
-            Assert.AreEqual(AnOrder.OrderContents, TestData);
-        }
-
-        [TestMethod]
-        public void DeliveryDateAddedPropertyOK()
+        public void OrderDateAddedPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
             DateTime TestData = DateTime.Now.Date;
-            AnOrder.ExpectedDeliveryDate = TestData;
-            Assert.AreEqual(AnOrder.ExpectedDeliveryDate, TestData);
+            AnOrder.OrderDeliveryDate = TestData;
+            Assert.AreEqual(AnOrder.OrderDeliveryDate, TestData);
         }
 
         [TestMethod]
@@ -60,15 +52,6 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void TotalPriceOK()
-        {
-            clsOrders AnOrder = new clsOrders();
-            Double TestData = 12.32;
-            AnOrder.TotalPrice = TestData;
-            Assert.AreEqual(AnOrder.TotalPrice, TestData);
-        }
-
-        [TestMethod]
         public void DeliveryAddressOK()
         {
             clsOrders AnOrder = new clsOrders();
@@ -78,13 +61,32 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void PaymentConfirmedOK()
+        public void UnitPriceOK()
         {
             clsOrders AnOrder = new clsOrders();
-            Boolean TestData = true;
-            AnOrder.PaymentConfirmed = TestData;
-            Assert.AreEqual(AnOrder.PaymentConfirmed, TestData);
+            Double TestData = 22.99;
+            AnOrder.UnitPrice = TestData;
+            Assert.AreEqual(AnOrder.UnitPrice, TestData);
         }
+
+        [TestMethod]
+        public void QuantityOK()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Int32 TestData = 4;
+            AnOrder.Quantity = TestData;
+            Assert.AreEqual(AnOrder.Quantity, TestData);
+        }
+
+        [TestMethod]
+        public void ProductCodeOK()
+        {
+            clsOrders AnOrder = new clsOrders();
+            String TestData = "AProduct1234";
+            AnOrder.ProductCode = TestData;
+            Assert.AreEqual(AnOrder.ProductCode, TestData);
+        }
+
     }
 
 }

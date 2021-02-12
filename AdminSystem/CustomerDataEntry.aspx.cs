@@ -27,7 +27,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnCustomer.CustomerBillingAddress = txtCustomerBillingAddress.Text;
             AnCustomer.CustomerShippingAddress = txtCustomerShippingAddress.Text;
             AnCustomer.DateJoined = Convert.ToDateTime(txtDateWhenJoined.Text);
-        
+        AnCustomer.CurrentOrder = chkAnyCurrentOrders.Checked;
             Session["AnCustomer"] = AnCustomer;
             //this navigates to the viewer page
             Response.Redirect("CustomerViewer.aspx");

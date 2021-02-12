@@ -22,7 +22,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         someStock.ItemType = txtItemType.Text;
         someStock.StockQuantity = Int32.Parse(txtStockQuantity.Text);
         someStock.Price = double.Parse(txtPrice.Text);
-        someStock.Available = bool.Parse(txtAvailable.Text);
+        someStock.Available = chkAvailable.Checked;
         someStock.Supplier = txtSupplier.Text;
         someStock.NextRestock = Convert.ToDateTime(txtNextRestock.Text);
         //store the name in the session object
@@ -31,8 +31,4 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("StockViewer.aspx");
     }
 
-    protected void chkActive_CheckedChanged(object sender, EventArgs e)
-    {
-
-    }
 }

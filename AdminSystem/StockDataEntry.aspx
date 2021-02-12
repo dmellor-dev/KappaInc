@@ -25,16 +25,13 @@
         <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
         <br />
         <asp:Label ID="Available" runat="server" Text="Available" width="162px"></asp:Label>
-        <asp:TextBox ID="txtAvailable" runat="server"></asp:TextBox>
+        <asp:CheckBox ID="chkAvailable" runat="server" Text=" " />
         <br />
         <asp:Label ID="Supplier" runat="server" Text="Supplier" width="162px"></asp:Label>
         <asp:TextBox ID="txtSupplier" runat="server"></asp:TextBox>
         <br />
         <asp:Label ID="NextRestock" runat="server" Text="Date Of Next Restock" width="162px"></asp:Label>
         <asp:TextBox ID="txtNextRestock" runat="server"></asp:TextBox>
-        <br />
-        <br />
-        <asp:CheckBox ID="chkActive" runat="server" OnCheckedChanged="chkActive_CheckedChanged" Text="Active" />
         <br />
         <br />
         <asp:Label ID="lblError" runat="server"></asp:Label>

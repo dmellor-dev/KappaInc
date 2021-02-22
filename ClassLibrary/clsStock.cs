@@ -3,15 +3,15 @@ namespace ClassLibrary
 {
     public class clsStock
     {
-        private int mItemID;
+        private Int32 mItemID;
         private string mItemName;
         private string mItemType;
-        private int mStockQuantity;
+        private Int32 mStockQuantity;
         private double mPrice;
         private bool mAvailable;
         private string mSupplier;
         private DateTime mNextRestock;
-        public int ItemID
+        public Int32 ItemID
         {
             get
             {
@@ -50,7 +50,7 @@ namespace ClassLibrary
                 mItemType = value;
             }
         }
-        public int StockQuantity
+        public Int32 StockQuantity
         {
             get
             {
@@ -118,17 +118,33 @@ namespace ClassLibrary
 
         public bool Find(int itemID)
         {
-            //set the private data members to the test data value
-            mItemID = 2;
-            mItemName = "HP v24i Full HD";
-            mItemType = "Monitor";
-            mStockQuantity = 15;
-            mPrice = 100;
-            mAvailable = true;
-            mSupplier = "HP";
-            mNextRestock = Convert.ToDateTime("26/07/2021");
-            //Always return true
-            return true;
+            //Create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //Add the parameter for the ItemID to search for
+            DB.AddParameter("@ItemID", itemID);
+            //Exectute the stored procedure
+            DB.Execute("sproc_tblStock_FilterByItemID");
+            //If one record is found (There should either by one of none)
+            if (DB.Count == 1)
+            {
+                //Copy the data from the database to the private data members
+                mItemID = Convert.ToInt32(DB.DataTable.Rows[0]["ItemID"]);
+                mItemName = Convert.ToString(DB.DataTable.Rows[0]["ItemName"]);
+                mItemType = Convert.ToString(DB.DataTable.Rows[0]["ItemType"]);
+                mStockQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["StockQuantity"]);
+                mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                mAvailable = Convert.ToBoolean(DB.DataTable.Rows[0]["Available"]);
+                mSupplier = Convert.ToString(DB.DataTable.Rows[0]["Supplier"]);
+                mNextRestock = Convert.ToDateTime(DB.DataTable.Rows[0]["NextRestock"]);
+                //Return that everything worked properly
+                return true;
+            }
+            //If no record was found
+            else
+            {
+                //Return false, indicating a problem
+                return false;
+            }
         }
     }
 }

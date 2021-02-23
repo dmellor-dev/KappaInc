@@ -10,22 +10,26 @@
    <form id="form1" runat="server">
        <div>
 
-           <asp:Label ID="lblAddressNo" runat="server" Text="Address Number"></asp:Label>
-           <asp:TextBox ID="txtAddressNumber" runat="server"></asp:TextBox><br />
-           <asp:Label ID="lblHouseNumber" runat="server" Text="House Number "></asp:Label>
-           <asp:TextBox ID="txtHouseNumber" runat="server"></asp:TextBox><br />
-           <asp:Label ID="lblStreet" runat="server" Text="Street "></asp:Label>
-           <asp:TextBox ID="txtStreet" runat="server"></asp:TextBox><br />
-           <asp:Label ID="lblTown" runat="server" Text="Town "></asp:Label>
-           <asp:TextBox ID="txtTown" runat="server"></asp:TextBox><br />
-           <asp:Label ID="lblPostcode" runat="server" Text="Postcode "></asp:Label>
-           <asp:TextBox ID="txtPostcode" runat="server"></asp:TextBox><br />
-           <asp:Label ID="lblCounty" runat="server" Text="County "></asp:Label>
-           <asp:TextBox ID="txtCounty" runat="server"></asp:TextBox><br />
-           <asp:Label ID="lblDateAdded" runat="server" Text="Date Added "></asp:Label>
-           <asp:TextBox ID="txtDateAdded" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblOrderId" runat="server" Text="Order Id " width="157px"></asp:Label>
+           <asp:TextBox ID="txtOrderId" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblItemId" runat="server" Text="Item Id " width="157px"></asp:Label>
+           <asp:TextBox ID="txtItemId" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblOrderDate" runat="server" Text="Order Date " width="157px"></asp:Label>
+           <asp:TextBox ID="txtOrderDate" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblDeliveryAddress" runat="server" Text="Delivery Address " width="157px"></asp:Label>
+           <asp:TextBox ID="txtDeliveryAddress" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblUnitPrice" runat="server" Text="Unit Price " width="157px"></asp:Label>
+           <asp:TextBox ID="txtUnitPrice" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblQuantity" runat="server" Text="Quantity " width="157px"></asp:Label>
+           <asp:TextBox ID="txtQuantity" runat="server"></asp:TextBox><br />
+           <asp:Label ID="lblProductCode" runat="server" Text="Product Code/SKU "></asp:Label>
+           <asp:TextBox ID="txtProductCode" runat="server"></asp:TextBox><br />
+           <asp:CheckBox ID="chkDispatched" runat="server" Text="Dispatched " /><br />
+           <asp:CheckBox ID="chkActiv" runat="server" Text="Order Active "/><br />
+           <asp:Label ID="lblError" runat="server" Text=""></asp:Label><br />
+           <asp:Button ID="btnAccept" runat="server" Text="Accept" OnClick="btnAccept_Click" />
+           <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
        </div>
-           
       
    </form>
 </body>

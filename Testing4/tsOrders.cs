@@ -1,6 +1,7 @@
 ﻿using System;
-using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ClassLibrary;
+
 
 namespace Testing4
 {
@@ -32,14 +33,23 @@ namespace Testing4
             Assert.AreEqual(AnOrder.OrderId, TestData);
         }
 
+        [TestMethod]
+        public void ItemIdOK()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Int32 TestData = 1;
+            AnOrder.ItemId = TestData;
+            Assert.AreEqual(AnOrder.ItemId, TestData);
+        }
+
        
         [TestMethod]
         public void OrderDateAddedPropertyOK()
         {
             clsOrders AnOrder = new clsOrders();
             DateTime TestData = DateTime.Now.Date;
-            AnOrder.OrderDeliveryDate = TestData;
-            Assert.AreEqual(AnOrder.OrderDeliveryDate, TestData);
+            AnOrder.OrderDate = TestData;
+            Assert.AreEqual(AnOrder.OrderDate, TestData);
         }
 
         [TestMethod]
@@ -87,6 +97,135 @@ namespace Testing4
             Assert.AreEqual(AnOrder.ProductCode, TestData);
         }
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestOrderIdFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.OrderId != 32)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderDateFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if(AnOrder.OrderDate != Convert.ToDateTime("15/2/2021"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderDeliveryAddressFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.DeliveryAddress != "An Address")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderDispatchedStatusFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.DispatchedStatus != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderUnitPriceFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.UnitPrice != 9.99)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderQuantityFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.Quantity != 2)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderProductCodeFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.ProductCode != "ABC1234")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderItemIdFound()
+        {
+            clsOrders AnOrder = new clsOrders();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 32;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.ItemId != 1)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 
 }

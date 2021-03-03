@@ -146,5 +146,40 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string ItemName, string ItemType, string Supplier, string NextRestock)
+        {
+            string Error = "";
+            DateTime DateTemp;
+
+            if (ItemName.Length > 50)
+            {
+                Error = Error + "The item name cannot exceed 50 characters";
+            }
+
+            if (ItemType.Length > 50)
+            {
+                Error = Error + "The item type cannot exceed 50 characters";
+            }
+
+            if (Supplier.Length > 50)
+            {
+                Error = Error + "The supplier cannot exceed 50 characters";
+            }
+            try
+            {
+                DateTemp = Convert.ToDateTime(NextRestock);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The next restock date cannot be in the past : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "the date was not a valid date : ";
+            }
+            
+            return Error;
+        }
     }
 }

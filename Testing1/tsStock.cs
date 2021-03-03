@@ -7,6 +7,16 @@ namespace Testing1
     [TestClass]
     public class tsStock
     {
+        //good test data
+        int ItemID = 2;
+        string ItemName = "HP v24i Full HD";
+        string ItemType = "Monitor";
+        int StockQuantity = 15;
+        Double Price = 100.00;
+        Boolean Available = true;
+        string Supplier = "HP";
+        string NextRestock = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -250,11 +260,472 @@ namespace Testing1
             Boolean OK = true;
             int ItemID = 2;
             Found = someStock.Find(ItemID);
-            if (someStock.NextRestock != Convert.ToDateTime("26/07/2021"))
+            if (someStock.NextRestock != Convert.ToDateTime("26/07/2022"))
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemName = "";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMinBoundary()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "A";
+            //create test data to pass the method
+            string ItemName = "";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemName = "Ab";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxLessOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(49, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxBoundary()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(50, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(51, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMid()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(25, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(1000, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemType = "";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeMinBoundary()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "A";
+            //create test data to pass the method
+            string ItemType = "";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemType = "Ab";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeMaxLessOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemType = "";
+            ItemType = ItemType.PadRight(49, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeMaxBoundary()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemType = "";
+            ItemType = ItemType.PadRight(50, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeMaxPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemType = "";
+            ItemType = ItemType.PadRight(51, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeMid()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemType = "";
+            ItemType = ItemType.PadRight(25, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemTypeExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string ItemType = "";
+            ItemType = ItemType.PadRight(1000, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string Supplier = "";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierMinBoundary()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "A";
+            //create test data to pass the method
+            string Supplier = "";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string Supplier = "Ab";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierMaxLessOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string Supplier = "";
+            Supplier = Supplier.PadRight(49, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierMaxBoundary()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string Supplier = "";
+            Supplier = Supplier.PadRight(50, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierMaxPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string Supplier = "";
+            Supplier = Supplier.PadRight(51, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierMid()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string Supplier = "";
+            Supplier = Supplier.PadRight(25, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void SupplierExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create test data to pass the method
+            string Supplier = "";
+            Supplier = Supplier.PadRight(1000, 'a');
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextRestockExtremeMin()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //Set date to 100 years ago
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            //convert the test date to a string 
+            string NextRestock = TestDate.ToString();
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextRestockMinLessOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //Set date to yesterday
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            //convert the test date to a string 
+            string NextRestock = TestDate.ToString();
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextRestockMinBoundary()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //Set date to today
+            TestDate = DateTime.Now.Date;
+            //convert the test date to a string 
+            string NextRestock = TestDate.ToString();
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextRestockMinPlusOne()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //Set date to tomorrow
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            //convert the test date to a string 
+            string NextRestock = TestDate.ToString();
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextRestockExtremeMax()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //Set date to 100 years from now
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            //convert the test date to a string 
+            string NextRestock = TestDate.ToString();
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextRestockInvalidData()
+        {
+            clsStock someStock = new clsStock();
+            String Error = "";
+            //create a variable to store the test data
+            //Set NextRestock to some non date data
+            string NextRestock = "Not a date";
+            //invoke the method
+            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Assert.AreNotEqual(Error, "");
         }
     }
 }

@@ -105,5 +105,10 @@ namespace ClassLibrary
             }
             
         }
+
+        public string Valid(object firstName, object lastName, object emailAddress, object homeAddress, object startDate)
+        {
+            return "";
+        }
     }
 }

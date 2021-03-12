@@ -7,6 +7,13 @@ namespace Testing3
     [TestClass]
     public class tstStaff
     {
+        //good test data
+        string FirstName = "Kacper";
+        string LastName = "Bziuk";
+        string EmailAddress = "kb@mail.com";
+        string HomeAddress = "123 Some Ln, LE1 111";
+        string StartDate = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -188,6 +195,14 @@ namespace Testing3
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
         }
     }
 }

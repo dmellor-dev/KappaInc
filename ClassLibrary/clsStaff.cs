@@ -106,9 +106,41 @@ namespace ClassLibrary
             
         }
 
-        public string Valid(object firstName, object lastName, object emailAddress, object homeAddress, object startDate)
+        public string Valid(string firstName, string lastName, string emailAddress, string homeAddress, string startDate)
         {
-            return "";
+            String Error = "";
+
+            DateTime TempDate;
+            // First name validation
+            if (firstName.Length == 0)
+            {
+                Error = Error + "The first name may not be blank : ";
+            }
+            if(firstName.Length > 50)
+            {
+                Error = Error + "The first name may not exceed 50 characters : ";
+            }
+            // Start date validation
+            try
+            {
+                TempDate = Convert.ToDateTime(startDate);
+                if (TempDate < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                if (TempDate > DateTime.Now.Date.AddMonths(1))
+                {
+                    Error = Error + "The date cannot be more than a month in the future : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
+            }
+            // Last name validation
+
+
+            return Error;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+
 namespace ClassLibrary
 {
     public class clsStock
@@ -147,8 +149,9 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string ItemName, string ItemType, string Supplier, string NextRestock)
+        public string Valid(string ItemName, string ItemType, string StockQuantity, string Price, string Supplier, string NextRestock)
         {
+
             string Error = "";
             DateTime DateTemp;
 
@@ -160,6 +163,17 @@ namespace ClassLibrary
             if (ItemType.Length > 50)
             {
                 Error = Error + "The item type cannot exceed 50 characters";
+            }
+
+            if (!Regex.IsMatch(StockQuantity, @"^\d+$"))
+            {
+                Error = Error + "The Stock Quantity must be numeric only";
+            }
+
+            Double num = 0;
+            if (!double.TryParse(Price, out num))
+            {
+                Error = Error + "The price must be a decimal number";
             }
 
             if (Supplier.Length > 50)

@@ -275,7 +275,7 @@ namespace Testing1
             //string variable to store any error message
             String Error = "";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -289,7 +289,7 @@ namespace Testing1
             //create test data to pass the method
             string ItemName = "";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -303,7 +303,7 @@ namespace Testing1
             //create test data to pass the method
             string ItemName = "";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -317,7 +317,7 @@ namespace Testing1
             //create test data to pass the method
             string ItemName = "Ab";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -332,7 +332,7 @@ namespace Testing1
             string ItemName = "";
             ItemName = ItemName.PadRight(49, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -347,7 +347,7 @@ namespace Testing1
             string ItemName = "";
             ItemName = ItemName.PadRight(50, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -362,7 +362,7 @@ namespace Testing1
             string ItemName = "";
             ItemName = ItemName.PadRight(51, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -377,7 +377,7 @@ namespace Testing1
             string ItemName = "";
             ItemName = ItemName.PadRight(25, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -392,7 +392,7 @@ namespace Testing1
             string ItemName = "";
             ItemName = ItemName.PadRight(1000, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -406,7 +406,7 @@ namespace Testing1
             //create test data to pass the method
             string ItemType = "";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -420,7 +420,7 @@ namespace Testing1
             //create test data to pass the method
             string ItemType = "";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -434,7 +434,7 @@ namespace Testing1
             //create test data to pass the method
             string ItemType = "Ab";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -449,7 +449,7 @@ namespace Testing1
             string ItemType = "";
             ItemType = ItemType.PadRight(49, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -464,7 +464,7 @@ namespace Testing1
             string ItemType = "";
             ItemType = ItemType.PadRight(50, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -479,7 +479,7 @@ namespace Testing1
             string ItemType = "";
             ItemType = ItemType.PadRight(51, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -494,7 +494,7 @@ namespace Testing1
             string ItemType = "";
             ItemType = ItemType.PadRight(25, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -509,7 +509,7 @@ namespace Testing1
             string ItemType = "";
             ItemType = ItemType.PadRight(1000, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -523,7 +523,7 @@ namespace Testing1
             //create test data to pass the method
             string Supplier = "";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -537,7 +537,7 @@ namespace Testing1
             //create test data to pass the method
             string Supplier = "";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -551,7 +551,7 @@ namespace Testing1
             //create test data to pass the method
             string Supplier = "Ab";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -566,7 +566,7 @@ namespace Testing1
             string Supplier = "";
             Supplier = Supplier.PadRight(49, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -581,7 +581,7 @@ namespace Testing1
             string Supplier = "";
             Supplier = Supplier.PadRight(50, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -596,7 +596,7 @@ namespace Testing1
             string Supplier = "";
             Supplier = Supplier.PadRight(51, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -611,7 +611,7 @@ namespace Testing1
             string Supplier = "";
             Supplier = Supplier.PadRight(25, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -626,7 +626,7 @@ namespace Testing1
             string Supplier = "";
             Supplier = Supplier.PadRight(1000, 'a');
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -644,7 +644,7 @@ namespace Testing1
             //convert the test date to a string 
             string NextRestock = TestDate.ToString();
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -661,7 +661,7 @@ namespace Testing1
             //convert the test date to a string 
             string NextRestock = TestDate.ToString();
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -677,7 +677,7 @@ namespace Testing1
             //convert the test date to a string 
             string NextRestock = TestDate.ToString();
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             Assert.AreEqual(Error, "");
         }
 
@@ -694,7 +694,7 @@ namespace Testing1
             //convert the test date to a string 
             string NextRestock = TestDate.ToString();
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             Assert.AreEqual(Error, "");
         }
 
@@ -711,7 +711,7 @@ namespace Testing1
             //convert the test date to a string 
             string NextRestock = TestDate.ToString();
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             Assert.AreEqual(Error, "");
         }
 
@@ -724,7 +724,7 @@ namespace Testing1
             //Set NextRestock to some non date data
             string NextRestock = "Not a date";
             //invoke the method
-            Error = someStock.Valid(ItemName, ItemType, Supplier, NextRestock);
+            Error = someStock.Valid(ItemName, ItemType, StockQuantity.ToString(), Price.ToString(), Supplier, NextRestock);
             Assert.AreNotEqual(Error, "");
         }
     }

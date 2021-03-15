@@ -17,18 +17,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsStock
         clsStock someStock = new clsStock();
-        //capture the ItemName
-        someStock.ItemName = txtItemName.Text;
-        someStock.ItemType = txtItemType.Text;
-        someStock.StockQuantity = Int32.Parse(txtStockQuantity.Text);
-        someStock.Price = double.Parse(txtPrice.Text);
-        someStock.Available = chkAvailable.Checked;
-        someStock.Supplier = txtSupplier.Text;
-        someStock.NextRestock = Convert.ToDateTime(txtNextRestock.Text);
-        //store the name in the session object
-        Session["someStock"] = someStock;
-        //navigate to the viewer page
-        Response.Redirect("StockViewer.aspx");
+        //capture the inputs as strings
+        String ItemName = txtItemName.Text;
+        String ItemType = txtItemType.Text;
+        String StockQuantity = txtStockQuantity.Text;
+        String Price = txtPrice.Text;
+        String Supplier = txtSupplier.Text;
+        String NextRestock = txtNextRestock.Text;
+        String Error = "";
+        // validate the data
+        Error = someStock.Valid(ItemName, ItemType, StockQuantity, Price, Supplier, NextRestock);
+        if (Error == "")//If it was fine collect the data
+        {
+            someStock.ItemName = ItemName;
+            someStock.ItemType = ItemType;
+            someStock.StockQuantity = Int32.Parse(StockQuantity);
+            someStock.Price = Double.Parse(Price);
+            someStock.Supplier = Supplier;
+            someStock.NextRestock = Convert.ToDateTime(NextRestock);
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
 
@@ -63,7 +74,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 lblError.Text = "Item ID not found";
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             lblError.Text = "Item ID not valid";
             txtItemName.Text = "";

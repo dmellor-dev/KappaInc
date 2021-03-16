@@ -138,7 +138,24 @@ namespace ClassLibrary
                 Error = Error + "The date was not a valid date : ";
             }
             // Last name validation
-
+            if(lastName.Length == 0)
+            {
+                Error = Error + "The last name may not be blank : ";
+            }
+            if(lastName.Length > 50)
+            {
+                Error = Error + "The last name may not exceed 50 characters : ";
+            }
+            // Email address validation
+            if(emailAddress.Length > 100)
+            {
+                Error = Error + "The email address may not exceed 100 characters : ";
+            }
+            // Home address validation
+            if(homeAddress.Length > 200)
+            {
+                Error = Error + "The home address may not exceed 200 characters : ";
+            }
 
             return Error;
         }

@@ -17,12 +17,29 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsStaff
         clsStaff StaffMember = new clsStaff();
-        //capture a first name
-        StaffMember.FirstName = txtFirstName.Text;
-        // store the name in the session object
-        Session["StaffMember"] = StaffMember;
-        //navigate to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+
+        string FirstName = txtFirstName.Text;
+        string LastName = txtLastName.Text;
+        string EmailAddress = txtEmailAddress.Text;
+        string HomeAddress = txtHomeAddress.Text;
+        string StartDate = txtStartDate.Text;
+        string Error = "";
+
+        Error = StaffMember.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+        if(Error == "")
+        {
+            StaffMember.FirstName = FirstName;
+            StaffMember.LastName = LastName;
+            StaffMember.EmailAddress = EmailAddress;
+            StaffMember.HomeAddress = HomeAddress;
+            StaffMember.StartDate = Convert.ToDateTime(StartDate);
+            Session["StaffMember"] = StaffMember;
+            Response.Write("StaffViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

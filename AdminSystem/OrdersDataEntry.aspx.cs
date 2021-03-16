@@ -16,10 +16,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnAccept_Click(object sender, EventArgs e)
     {
         clsOrders AnOrder = new clsOrders();
-        AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
-        Session["AnOrder"] = AnOrder;
-        //Navigate to order viewer page
-        Response.Redirect("OrdersViewer.aspx");
+        int OrderId = Convert.ToInt32(txtOrderId.Text);
+        int ItemId = Convert.ToInt32(txtItemId.Text);
+        DateTime OrderDate = Convert.ToDateTime(txtOrderDate.Text);
+        string DeliveryAddress = txtDeliveryAddress.Text;
+        Double UnitPrice = Convert.ToDouble(txtUnitPrice.Text);
+        int Quantity = Convert.ToInt32(txtQuantity.Text);
+        string ProductCode = txtProductCode.Text;
+        bool DispatchedStatus = chkDispatched.Checked;
+
+        string Error = "";
+        Error = AnOrder.Valid(OrderId, ItemId, OrderDate, DeliveryAddress, DispatchedStatus, UnitPrice, Quantity, ProductCode);
+
+        if (Error == "")
+        {
+            AnOrder.OrderId = OrderId;
+            AnOrder.ItemId = ItemId;
+            AnOrder.OrderDate = OrderDate;
+            AnOrder.DeliveryAddress = DeliveryAddress;
+            AnOrder.UnitPrice = UnitPrice;
+            AnOrder.Quantity = Quantity;
+            AnOrder.ProductCode = ProductCode;
+            AnOrder.DispatchedStatus = DispatchedStatus;
+
+            Session["AnOrder"] = AnOrder;
+            Response.Redirect("OrdersViewer.aspx");
+        } else
+        {
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

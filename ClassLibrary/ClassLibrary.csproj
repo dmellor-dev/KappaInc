@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="clsCustomer.cs" />
     <Compile Include="clsDataConnection.cs" />
+    <Compile Include="clsItemCollection.cs" />
     <Compile Include="clsOrders.cs" />
     <Compile Include="clsStaff.cs" />
     <Compile Include="clsStock.cs" />

@@ -204,6 +204,7 @@ namespace Testing3
             Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
             Assert.AreEqual(Error, "");
         }
+        // First Name Validation
         [TestMethod]
         public void FirstNameMinLessOne()
         {
@@ -277,6 +278,7 @@ namespace Testing3
             Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
             Assert.AreNotEqual(Error, "");
         }
+        // Start Date Validation
         [TestMethod]
         public void StartDateExtremeMin()
         {
@@ -378,6 +380,214 @@ namespace Testing3
             clsStaff staff = new clsStaff();
             String Error = "";
             string StartDate = "This not a date!";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        //Last Name Validation
+        [TestMethod]
+        public void LastNameMinLessOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void LastNameMin()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "a";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void LastNameMinPlusOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "ab";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void LastNameMaxLessOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "0123456789012345678901234567890123456789012345678";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void LastNameMax()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "01234567890123456789012345678901234567890123456789";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void LastNameMaxPlusOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "012345678901234567890123456789012345678901234567890";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void LastNameMid()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "0123456789012345678901234";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void LastNameExtremeMax()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string LastName = "";
+            LastName = LastName.PadRight(500, 'a');
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        // Email Address Testing
+        [TestMethod]
+        public void EmailAddressMin()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAddressMinPlusOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "a";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAddressMaxLessOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAddressMax()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAddressMaxPlusOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAddressMid()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "01234567890123456789012345678901234567890123456789";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailAddressExtremeMax()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string EmailAddress = "";
+            EmailAddress = EmailAddress.PadRight(300, 'a');
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        // Home Address Validation
+        [TestMethod]
+        public void HomeAddressMin()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string HomeAddress = "";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void HomeAddressMinPlusOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string HomeAddress = "a";
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void HomeAddressMaxLessOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string HomeAddress = "";
+            HomeAddress = HomeAddress.PadRight(199, 'a');
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void HomeAddressMax()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string HomeAddress = "";
+            HomeAddress = HomeAddress.PadRight(200, 'a');
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void HomeAddressMaxPlusOne()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string HomeAddress = "";
+            HomeAddress = HomeAddress.PadRight(201, 'a');
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void HomeAddressMid()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string HomeAddress = "";
+            HomeAddress = HomeAddress.PadRight(100, 'a');
+            Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void HomeAddressExtremeMax()
+        {
+            clsStaff staff = new clsStaff();
+            String Error = "";
+            string HomeAddress = "";
+            HomeAddress = HomeAddress.PadRight(500, 'a');
             Error = staff.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
             Assert.AreNotEqual(Error, "");
         }

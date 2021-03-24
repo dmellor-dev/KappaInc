@@ -55,6 +55,7 @@
     <Compile Include="clsItemCollection.cs" />
     <Compile Include="clsOrders.cs" />
     <Compile Include="clsStaff.cs" />
+    <Compile Include="clsStaffCollection.cs" />
     <Compile Include="clsStock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -34,14 +34,6 @@ namespace Testing3
             Assert.AreEqual(AllStaff.StaffList, TestList);
         }
         [TestMethod]
-        public void CountPropertyOK()
-        {
-            clsStaffCollection AllStaff = new clsStaffCollection();
-            Int32 SomeCount = 0;
-            AllStaff.Count = SomeCount;
-            Assert.AreEqual(AllStaff.Count, SomeCount);
-        }
-        [TestMethod]
         public void ThisStaffMemberOK()
         {
             clsStaffCollection AllStaff = new clsStaffCollection();
@@ -57,6 +49,25 @@ namespace Testing3
 
             AllStaff.ThisStaffMember = TestStaff;
             Assert.AreEqual(AllStaff.ThisStaffMember, TestStaff);
+        }
+        [TestMethod]
+        public void ListAndCountOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            List<clsStaff> TestList = new List<clsStaff>();
+
+            clsStaff TestItem = new clsStaff();
+            TestItem.StaffId = 101;
+            TestItem.FirstName = "Joe";
+            TestItem.LastName = "Bennet";
+            TestItem.EmailAddress = "jb@email.com";
+            TestItem.HomeAddress = "101 Joe Ln, LE1 101";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.IsWorking = true;
+
+            TestList.Add(TestItem);
+            AllStaff.StaffList = TestList;
+            Assert.AreEqual(AllStaff.Count, TestList.Count);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsStaffCollection
     {
         private List<clsStaff> mStaffList = new List<clsStaff>();
+        private clsStaff mThisStaffMember = new clsStaff();
         public clsStaffCollection()
         {
             Int32 Index = 0;
@@ -53,6 +54,28 @@ namespace ClassLibrary
                 // TODO
             }
         }
-        public clsStaff ThisStaffMember { get; set; }
+        public clsStaff ThisStaffMember
+        {
+            get
+            {
+                return mThisStaffMember;
+            }
+            set
+            {
+                mThisStaffMember = value;
+            }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@FirstName", mThisStaffMember.FirstName);
+            DB.AddParameter("@LastName", mThisStaffMember.LastName);
+            DB.AddParameter("@EmailAddress", mThisStaffMember.EmailAddress);
+            DB.AddParameter("@HomeAddress", mThisStaffMember.HomeAddress);
+            DB.AddParameter("@StartDate", mThisStaffMember.StartDate);
+            DB.AddParameter("@IsWorking", mThisStaffMember.IsWorking);
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
     }
 }

@@ -33,8 +33,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
             StaffMember.EmailAddress = EmailAddress;
             StaffMember.HomeAddress = HomeAddress;
             StaffMember.StartDate = Convert.ToDateTime(StartDate);
-            Session["StaffMember"] = StaffMember;
-            Response.Write("StaffViewer.aspx");
+            clsStaffCollection StaffList = new clsStaffCollection();
+            StaffList.ThisStaffMember = StaffMember;
+            StaffList.Add();
+            Response.Redirect("StaffList.aspx");
         }
         else
         {

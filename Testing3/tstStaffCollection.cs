@@ -69,5 +69,29 @@ namespace Testing3
             AllStaff.StaffList = TestList;
             Assert.AreEqual(AllStaff.Count, TestList.Count);
         }
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            //setting properties
+            TestItem.StaffId = 101;
+            TestItem.FirstName = "Joe";
+            TestItem.LastName = "Bennet";
+            TestItem.EmailAddress = "jb@email.com";
+            TestItem.HomeAddress = "101 Joe Ln, LE1 101";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.IsWorking = true;
+            //setting ThisStaffMember to the test data
+            AllStaff.ThisStaffMember = TestItem;
+            //adding the record
+            PrimaryKey = AllStaff.Add();
+            //setting the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //find the record
+            AllStaff.ThisStaffMember.Find(PrimaryKey);
+            Assert.AreEqual(AllStaff.ThisStaffMember, TestItem);
+        }
     }
 }

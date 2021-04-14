@@ -126,5 +126,32 @@ namespace Testing3
             //testing
             Assert.AreEqual(AllStaff.ThisStaffMember, TestItem);
         }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            //setting properties
+            TestItem.FirstName = "Jason";
+            TestItem.LastName = "Pratchet";
+            TestItem.EmailAddress = "jp@email.com";
+            TestItem.HomeAddress = "303 Pratt Ln, LE1 303";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.IsWorking = true;
+            //setting ThisStaffMember to the test data
+            AllStaff.ThisStaffMember = TestItem;
+            //adding the record
+            PrimaryKey = AllStaff.Add();
+            //setting the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //finding the record
+            AllStaff.ThisStaffMember.Find(PrimaryKey);
+            //deleting the record
+            AllStaff.Delete();
+            //finding the record again
+            Boolean Found = AllStaff.ThisStaffMember.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
     }
 }

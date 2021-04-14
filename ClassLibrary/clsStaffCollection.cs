@@ -77,5 +77,20 @@ namespace ClassLibrary
             DB.AddParameter("@IsWorking", mThisStaffMember.IsWorking);
             return DB.Execute("sproc_tblStaff_Insert");
         }
+
+        public void Update()
+        {
+            //update an existing record based on the values of thisStaffMember
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@StaffId", mThisStaffMember.StaffId);
+            DB.AddParameter("@FirstName", mThisStaffMember.FirstName);
+            DB.AddParameter("@LastName", mThisStaffMember.LastName);
+            DB.AddParameter("@EmailAddress", mThisStaffMember.EmailAddress);
+            DB.AddParameter("@HomeAddress", mThisStaffMember.HomeAddress);
+            DB.AddParameter("@StartDate", mThisStaffMember.StartDate);
+            DB.AddParameter("@IsWorking", mThisStaffMember.IsWorking);
+            //executing the stored procedure
+            DB.Execute("sproc_tblStaff_Update");
+        }
     }
 }

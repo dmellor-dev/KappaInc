@@ -8,9 +8,30 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StaffId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        StaffId = Convert.ToInt32(Session["StaffId"]);
+        if(IsPostBack == false)
+        {
+            if(StaffId != -1)
+            {
+                DisplayStaffInfo();
+            }
+        }
+    }
 
+    private void DisplayStaffInfo()
+    {
+        clsStaffCollection StaffRegister = new clsStaffCollection();
+        StaffRegister.ThisStaffMember.Find(StaffId);
+        txtStaffId.Text = StaffRegister.ThisStaffMember.StaffId.ToString();
+        txtFirstName.Text = StaffRegister.ThisStaffMember.FirstName;
+        txtLastName.Text = StaffRegister.ThisStaffMember.LastName;
+        txtEmailAddress.Text = StaffRegister.ThisStaffMember.EmailAddress;
+        txtHomeAddress.Text = StaffRegister.ThisStaffMember.HomeAddress;
+        txtStartDate.Text = StaffRegister.ThisStaffMember.StartDate.ToString();
+        chkIsWorking.Checked = StaffRegister.ThisStaffMember.IsWorking;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -28,14 +49,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = StaffMember.Valid(FirstName, LastName, EmailAddress, HomeAddress, StartDate);
         if(Error == "")
         {
+            StaffMember.StaffId = StaffId;
             StaffMember.FirstName = FirstName;
             StaffMember.LastName = LastName;
             StaffMember.EmailAddress = EmailAddress;
             StaffMember.HomeAddress = HomeAddress;
             StaffMember.StartDate = Convert.ToDateTime(StartDate);
+            StaffMember.IsWorking = chkIsWorking.Checked;
             clsStaffCollection StaffList = new clsStaffCollection();
-            StaffList.ThisStaffMember = StaffMember;
-            StaffList.Add();
+            
+            if(StaffId == -1)
+            {
+                StaffList.ThisStaffMember = StaffMember;
+                StaffList.Add();
+            }
+            else
+            {
+                StaffList.ThisStaffMember.Find(StaffId);
+                StaffList.ThisStaffMember = StaffMember;
+                StaffList.Update();
+            }
+
             Response.Redirect("StaffList.aspx");
         }
         else

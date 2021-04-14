@@ -76,7 +76,6 @@ namespace Testing3
             clsStaff TestItem = new clsStaff();
             Int32 PrimaryKey = 0;
             //setting properties
-            TestItem.StaffId = 101;
             TestItem.FirstName = "Joe";
             TestItem.LastName = "Bennet";
             TestItem.EmailAddress = "jb@email.com";
@@ -91,6 +90,40 @@ namespace Testing3
             TestItem.StaffId = PrimaryKey;
             //find the record
             AllStaff.ThisStaffMember.Find(PrimaryKey);
+            Assert.AreEqual(AllStaff.ThisStaffMember, TestItem);
+        }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaff TestItem = new clsStaff();
+            Int32 PrimaryKey = 0;
+            //setting properties
+            TestItem.FirstName = "Joe";
+            TestItem.LastName = "Bennet";
+            TestItem.EmailAddress = "jb@email.com";
+            TestItem.HomeAddress = "101 Joe Ln, LE1 101";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.IsWorking = true;
+            //setting ThisStaffMember to the test data
+            AllStaff.ThisStaffMember = TestItem;
+            //adding the record
+            PrimaryKey = AllStaff.Add();
+            TestItem.StaffId = PrimaryKey;
+            //modifying the test data
+            TestItem.FirstName = "Jack";
+            TestItem.LastName = "Deck";
+            TestItem.EmailAddress = "jd@email.com";
+            TestItem.HomeAddress = "102 Jack Ln, LE1 102";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.IsWorking = false;
+            //setting the record based on the new test data
+            AllStaff.ThisStaffMember = TestItem;
+            //updating the record
+            AllStaff.Update();
+            //fiding the record
+            AllStaff.ThisStaffMember.Find(PrimaryKey);
+            //testing
             Assert.AreEqual(AllStaff.ThisStaffMember, TestItem);
         }
     }

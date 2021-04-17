@@ -111,5 +111,73 @@ namespace Testing1
             //test to see that the two values are the same
             Assert.AreEqual(AllItems.ThisItem, TestItem);
         }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsItemCollection AllItems = new clsItemCollection();
+            clsStock TestItem = new clsStock();
+            Int32 PrimaryKey = 0;
+            //set properties
+            TestItem.ItemID = 11; //This will only work once because it adds the test item to the list meaning there is now a duplicate, so change this value each time or remove it from the database
+            TestItem.Available = true;
+            TestItem.ItemName = "TestItem";
+            TestItem.ItemType = "Monitor";
+            TestItem.StockQuantity = 10;
+            TestItem.Price = 10.00;
+            TestItem.Supplier = "KappaInc";
+            TestItem.NextRestock = DateTime.Now.Date.AddDays(1);
+            //set ThisItem to the test data
+            AllItems.ThisItem = TestItem;
+            //add the record
+            PrimaryKey = AllItems.Add();
+            //set the primary key of the test data
+            TestItem.ItemID = PrimaryKey;
+            //modify the test data
+            TestItem.Available = false;
+            TestItem.ItemName = "ADifferentTestItem";
+            TestItem.ItemType = "Mouse";
+            TestItem.StockQuantity = 33;
+            TestItem.Price = 25.99;
+            TestItem.Supplier = "NotKappaInc";
+            TestItem.NextRestock = DateTime.Now.Date.AddDays(1);
+            //set the record based on the new data
+            AllItems.ThisItem = TestItem;
+            //update the record
+            AllItems.Update();
+            //find the record
+            AllItems.ThisItem.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllItems.ThisItem, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsItemCollection AllItems = new clsItemCollection();
+            clsStock TestItem = new clsStock();
+            Int32 PrimaryKey = 0;
+            //set properties
+            TestItem.ItemID = 20; //This will only work once because it adds the test item to the list meaning there is now a duplicate, so change this value each time or remove it from the database
+            TestItem.Available = true;
+            TestItem.ItemName = "DeleteTestItem";
+            TestItem.ItemType = "Monitor";
+            TestItem.StockQuantity = 10;
+            TestItem.Price = 10.00;
+            TestItem.Supplier = "KappaInc";
+            TestItem.NextRestock = DateTime.Now.Date.AddDays(1);
+            //set ThisItem to the test data
+            AllItems.ThisItem = TestItem;
+            //add the record
+            PrimaryKey = AllItems.Add();
+            //set the primary key of the test data
+            TestItem.ItemID = PrimaryKey;
+            //find the record
+            AllItems.ThisItem.Find(PrimaryKey);
+            //delete the record
+            AllItems.Delete();
+            //Test to see if the item is there (It shouldnt be)
+            Assert.IsFalse(AllItems.ThisItem.Find(PrimaryKey));
+        }
     }
 }

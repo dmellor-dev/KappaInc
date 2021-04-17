@@ -8,9 +8,37 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 ItemID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the item to be processed
+        ItemID = Convert.ToInt32(Session["ItemID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new item
+            if (ItemID != -1)
+            {
+                //Display the current data for the record
+                DisplayItems();
+            }
+        }
+    }
 
+    void DisplayItems()
+    {
+        //create an instace of the item collection
+        clsItemCollection AllItems = new clsItemCollection();
+        //find the record to update
+        AllItems.ThisItem.Find(ItemID);
+        //display the data for this record
+        txtItemID.Text = AllItems.ThisItem.ItemID.ToString();
+        txtItemName.Text = AllItems.ThisItem.ItemName;
+        txtItemType.Text = AllItems.ThisItem.ItemType;
+        txtStockQuantity.Text = AllItems.ThisItem.StockQuantity.ToString();
+        txtPrice.Text = AllItems.ThisItem.Price.ToString();
+        chkAvailable.Checked = AllItems.ThisItem.Available;
+        txtSupplier.Text = AllItems.ThisItem.Supplier;
+        txtNextRestock.Text = AllItems.ThisItem.NextRestock.ToString();
     }
 
     protected void btnOK_Click1(object sender, EventArgs e)
@@ -18,7 +46,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStock
         clsStock someStock = new clsStock();
         //capture the inputs as strings
-        String ItemID = txtItemID.Text;
+
         String ItemName = txtItemName.Text;
         String ItemType = txtItemType.Text;
         String StockQuantity = txtStockQuantity.Text;
@@ -30,7 +58,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = someStock.Valid(ItemName, ItemType, StockQuantity, Price, Supplier, NextRestock);
         if (Error == "")//If it was fine collect the data
         {
-            someStock.ItemID = Int32.Parse(ItemID);
+            someStock.ItemID = ItemID;
             someStock.ItemName = ItemName;
             someStock.ItemType = ItemType;
             someStock.StockQuantity = Int32.Parse(StockQuantity);
@@ -39,17 +67,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
             someStock.NextRestock = Convert.ToDateTime(NextRestock);
             //create a new instance of item collection
             clsItemCollection ItemList = new clsItemCollection();
-            //set the ThisItem property
-            ItemList.ThisItem = someStock;
-            //add the new record
-            ItemList.Add();
-            //redirect bact to the listpage
+            //if this is a new record i.e. ItemID = -1 then add the data
+            if (someStock.ItemID == -1)
+            {
+                ItemList.ThisItem = someStock;
+                ItemList.Add();
+                
+            }
+            //otherwise it must be an update
+            else
+            {
+                ItemList.ThisItem.Find(someStock.ItemID);
+                ItemList.ThisItem = someStock;
+                ItemList.Update();
+                
+            }
             Response.Redirect("StockList.aspx");
         }
         else
         {
             lblError.Text = Error;
         }
+        
     }
 
 

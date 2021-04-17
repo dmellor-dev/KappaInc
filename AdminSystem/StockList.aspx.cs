@@ -11,6 +11,7 @@ public partial class _1_List : System.Web.UI.Page
     //this function handles the load event for the page
     protected void Page_Load(object sender, EventArgs e)
     {
+        lblError.Text = "";
         //if this is the first time the page is displayed
         if(IsPostBack == false)
         {

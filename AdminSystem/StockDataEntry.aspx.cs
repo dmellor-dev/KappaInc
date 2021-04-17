@@ -70,7 +70,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //if this is a new record i.e. ItemID = -1 then add the data
             if (someStock.ItemID == -1)
             {
+                someStock.ItemID = Int32.Parse(txtItemID.Text);
                 ItemList.ThisItem = someStock;
+                
                 ItemList.Add();
                 
             }

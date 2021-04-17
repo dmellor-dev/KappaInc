@@ -85,5 +85,31 @@ namespace Testing1
             Assert.AreEqual(AllItems.Count, TestList.Count);
         }
       
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsItemCollection AllItems = new clsItemCollection();
+            clsStock TestItem = new clsStock();
+            Int32 PrimaryKey = 0;
+            //set properties
+            TestItem.ItemID = 10; //This will only work once because it adds the test item to the list meaning there is now a duplicate, so change this value each time or remove it from the database
+            TestItem.Available = true;
+            TestItem.ItemName = "TestItem";
+            TestItem.ItemType = "Monitor";
+            TestItem.StockQuantity = 10;
+            TestItem.Price = 10.00;
+            TestItem.Supplier = "KappaInc";
+            TestItem.NextRestock = DateTime.Now.Date.AddDays(1);
+            //set ThisItem to the test data
+            AllItems.ThisItem = TestItem;
+            //add the record
+            PrimaryKey = AllItems.Add();
+            //set the primary key of the test data
+            TestItem.ItemID = PrimaryKey;
+            //find the record
+            AllItems.ThisItem.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllItems.ThisItem, TestItem);
+        }
     }
 }

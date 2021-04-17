@@ -19,6 +19,9 @@
         <div>
         </div>
         <asp:ListBox ID="lstStockList" runat="server" Height="300px" Width="300px" OnSelectedIndexChanged="lstStockList_SelectedIndexChanged" style="margin-left: 0px; margin-top: 0px"></asp:ListBox>
+        <p>
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+        </p>
     </form>
 </body>
 </html>

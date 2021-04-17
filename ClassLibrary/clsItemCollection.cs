@@ -7,6 +7,7 @@ namespace ClassLibrary
     {
         //Private data member for the list
         List<clsStock> mItemList = new List<clsStock>();
+        private clsStock mThisItem = new clsStock();
 
         //constructor for the class
         public clsItemCollection()
@@ -67,6 +68,31 @@ namespace ClassLibrary
                 //Later
             }
         }
-        public clsStock ThisItem { get; set; }
+        public clsStock ThisItem
+        {
+            get
+            {
+                return mThisItem;
+            }
+            set
+            {
+                mThisItem = value;
+            }
+        }
+
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ItemID", mThisItem.ItemID);
+            DB.AddParameter("@Available", mThisItem.Available);
+            DB.AddParameter("@ItemName", mThisItem.ItemName);
+            DB.AddParameter("@ItemType", mThisItem.ItemType);
+            DB.AddParameter("@StockQuantity", mThisItem.StockQuantity);
+            DB.AddParameter("@Price", mThisItem.Price);
+            DB.AddParameter("@Supplier", mThisItem.Supplier);
+            DB.AddParameter("@NextRestock", mThisItem.NextRestock);
+
+            return DB.Execute("sproc_tblStock_Insert");
+        }
     }
 }

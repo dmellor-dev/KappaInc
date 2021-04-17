@@ -18,6 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStock
         clsStock someStock = new clsStock();
         //capture the inputs as strings
+        String ItemID = txtItemID.Text;
         String ItemName = txtItemName.Text;
         String ItemType = txtItemType.Text;
         String StockQuantity = txtStockQuantity.Text;
@@ -29,12 +30,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = someStock.Valid(ItemName, ItemType, StockQuantity, Price, Supplier, NextRestock);
         if (Error == "")//If it was fine collect the data
         {
+            someStock.ItemID = Int32.Parse(ItemID);
             someStock.ItemName = ItemName;
             someStock.ItemType = ItemType;
             someStock.StockQuantity = Int32.Parse(StockQuantity);
             someStock.Price = Double.Parse(Price);
             someStock.Supplier = Supplier;
             someStock.NextRestock = Convert.ToDateTime(NextRestock);
+            //create a new instance of item collection
+            clsItemCollection ItemList = new clsItemCollection();
+            //set the ThisItem property
+            ItemList.ThisItem = someStock;
+            //add the new record
+            ItemList.Add();
+            //redirect bact to the listpage
+            Response.Redirect("StockList.aspx");
         }
         else
         {

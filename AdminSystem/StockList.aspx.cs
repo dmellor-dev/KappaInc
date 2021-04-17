@@ -40,4 +40,41 @@ public partial class _1_List : System.Web.UI.Page
         //Redirect to the data entry page
         Response.Redirect("StockDataEntry.aspx");
     }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key of the record to be editied
+        Int32 ItemID;
+        //if a record has been selected from the list
+        if (lstStockList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to edit
+            ItemID = Convert.ToInt32(lstStockList.SelectedValue);
+            //store the data in the session object
+            Session["ItemID"] = ItemID;
+            //redirect to the edit page
+            Response.Redirect("StockDataEntry.aspx");
+        }
+        else
+        {
+            //display an error
+            lblError.Text = "Please select a record from the list to Edit";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 ItemID;
+        if (lstStockList.SelectedIndex != -1)
+        {
+            ItemID = Convert.ToInt32(lstStockList.SelectedValue);
+            Session["ItemID"] = ItemID;
+            Response.Redirect("StockConfirmDelete.aspx");
+        }
+        else //if no record has been selected
+        {
+            //display an error
+            lblError.Text = "Please select a record from the list to Delete";
+        }
+    }
 }

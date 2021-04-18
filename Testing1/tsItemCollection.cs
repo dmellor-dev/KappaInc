@@ -179,5 +179,47 @@ namespace Testing1
             //Test to see if the item is there (It shouldnt be)
             Assert.IsFalse(AllItems.ThisItem.Find(PrimaryKey));
         }
+
+        [TestMethod]
+        public void ReportByItemTypeMethodOK()
+        {
+            clsItemCollection AllItems = new clsItemCollection();
+            clsItemCollection FilteredItems = new clsItemCollection();
+            FilteredItems.ReportByItemType("");
+            Assert.AreEqual(AllItems.Count, FilteredItems.Count);
+        }
+
+        [TestMethod]
+        public void ReportByItemTypeNoneFound()
+        {
+            clsItemCollection FilteredItems = new clsItemCollection();
+            FilteredItems.ReportByItemType("xxxxxxx");
+            Assert.AreEqual(0, FilteredItems.Count);
+        }
+
+        [TestMethod]
+        public void ReportByItemTypeDataFound()
+        {
+            clsItemCollection FilteredItems = new clsItemCollection();
+            Boolean OK = true;
+            FilteredItems.ReportByItemType("Mouse");
+            if (FilteredItems.Count == 2)
+            {
+                if (FilteredItems.ItemList[0].ItemID != 1)
+                {
+                    OK = false;
+                }
+                if (FilteredItems.ItemList[1].ItemID != 11)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
     }
 }

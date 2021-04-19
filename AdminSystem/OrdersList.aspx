@@ -9,6 +9,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:ListBox ID="lstOrdersList" runat="server" Height="500px" Width="460px"></asp:ListBox>
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Image ID="Image1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Capture.PNG" style="margin-bottom: 0px" Width="200px" />
         </div>
     </form>
 </body>

@@ -39,8 +39,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.ProductCode = ProductCode;
             AnOrder.DispatchedStatus = DispatchedStatus;
 
-            Session["AnOrder"] = AnOrder;
-            Response.Redirect("OrdersViewer.aspx");
+            clsOrderCollection OrdersList = new clsOrderCollection();
+            OrdersList.ThisOrder = AnOrder;
+            OrdersList.Add();
+
+            Response.Redirect("OrdersList.aspx");
         } else
         {
             lblError.Text = Error;
@@ -67,5 +70,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             lblError.Text = "Order ID not recognised";
         }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrdersList.aspx");
     }
 }

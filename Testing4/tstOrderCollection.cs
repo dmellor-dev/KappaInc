@@ -94,5 +94,78 @@ namespace Testing4
             AllOrder.ThisOrder.Find(PrimaryKey);
             Assert.AreEqual(AllOrder.ThisOrder, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrders TestItem = new clsOrders();
+            Int32 PrimaryKey = 0;
+            TestItem.OrderId = 99;
+            TestItem.DeliveryAddress = "An Address";
+            TestItem.DispatchedStatus = true;
+            TestItem.UnitPrice = 5.99;
+            TestItem.Quantity = 2;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.ProductCode = "ABC1234";
+            TestItem.ItemId = 1;
+            AllOrder.ThisOrder = TestItem;
+            PrimaryKey = AllOrder.Add();
+            TestItem.OrderId = PrimaryKey;
+            AllOrder.ThisOrder.Find(PrimaryKey);
+            AllOrder.Delete();
+            Boolean Found = AllOrder.ThisOrder.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            clsOrders TestItem = new clsOrders();
+            Int32 PrimaryKey = 0;
+            TestItem.OrderId = 99;
+            TestItem.DeliveryAddress = "An Address";
+            TestItem.DispatchedStatus = true;
+            TestItem.UnitPrice = 5.99;
+            TestItem.Quantity = 2;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.ProductCode = "ABC1234";
+            TestItem.ItemId = 1;
+            AllOrder.ThisOrder = TestItem;
+            PrimaryKey = AllOrder.Add();
+            TestItem.OrderId = PrimaryKey;
+
+            TestItem.DeliveryAddress = "A new Address";
+            TestItem.DispatchedStatus = false;
+            TestItem.UnitPrice = 6.99;
+            TestItem.Quantity = 5;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.ProductCode = "ABC1245";
+            TestItem.ItemId = 1;
+            AllOrder.ThisOrder = TestItem;
+
+            AllOrder.Update();
+            AllOrder.ThisOrder.Find(PrimaryKey);
+            Assert.AreEqual(AllOrder.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void ReportByProductCodeMethodOK()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.ReportByProductCode("");
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
+        }
+
+        [TestMethod]
+        public void ReportByProductCodeNoneFound()
+        {
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            FilteredOrders.ReportByProductCode("xxxxxxx");
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
     }
 }

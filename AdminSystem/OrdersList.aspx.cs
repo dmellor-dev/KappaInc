@@ -30,4 +30,34 @@ public partial class _1_List : System.Web.UI.Page
         Session["OrderId"] = -1;
         Response.Redirect("OrdersDataEntry.aspx");
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 OrderId;
+
+        if (lstOrdersList.SelectedIndex != 1)
+        {
+            OrderId = Convert.ToInt32(lstOrdersList.SelectedValue);
+            Session["OrderId"] = OrderId;
+            Response.Redirect("DeleteOrder.aspx");
+        } else
+        {
+            lblError.Text = "Please Select an Order to delete from the list";
+        }
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        Int32 OrderId;
+
+        if (lstOrdersList.SelectedIndex != -1)
+        {
+            OrderId = Convert.ToInt32(lstOrdersList.SelectedValue);
+            Session["OrderId"] = OrderId;
+            Response.Redirect("AnOrder.aspx");
+        } else
+        {
+            lblError.Text = "Please select a record to edit from the list";
+        }
+    }
 }

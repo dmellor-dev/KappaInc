@@ -8,8 +8,34 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        {
+            OrderId = Convert.ToInt32(Session["OrderId"]);
+            if (IsPostBack == false)
+            {
+                if (OrderId != -1)
+                {
+                    DisplayOrders();
+                }
+            }
+        }
+
+    }
+
+    void DisplayOrders()
+    {
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.ThisOrder.Find(OrderId);
+
+        txtItemId.Text = Convert.ToString(Orders.ThisOrder.ItemId);
+        txtOrderDate.Text = Convert.ToString(Orders.ThisOrder.OrderDate);
+        txtDeliveryAddress.Text = Orders.ThisOrder.DeliveryAddress;
+        txtUnitPrice.Text = Convert.ToString(Orders.ThisOrder.UnitPrice);
+        txtQuantity.Text = Convert.ToString(Orders.ThisOrder.Quantity);
+        txtProductCode.Text = Convert.ToString(Orders.ThisOrder.ProductCode);
+        chkDispatched.Checked = Convert.ToBoolean(Orders.ThisOrder.DispatchedStatus);
 
     }
 
@@ -32,7 +58,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             AnOrder.OrderId = OrderId;
             AnOrder.ItemId = ItemId;
-            AnOrder.OrderDate = OrderDate;
+            AnOrder.OrderDate = Convert.ToDateTime(OrderDate);
             AnOrder.DeliveryAddress = DeliveryAddress;
             AnOrder.UnitPrice = UnitPrice;
             AnOrder.Quantity = Quantity;
@@ -40,8 +66,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.DispatchedStatus = DispatchedStatus;
 
             clsOrderCollection OrdersList = new clsOrderCollection();
-            OrdersList.ThisOrder = AnOrder;
-            OrdersList.Add();
+
+            if (OrderId == -1)
+            {
+                OrdersList.ThisOrder = AnOrder;
+                OrdersList.Add();
+            } else
+            {
+                OrdersList.ThisOrder.Find(OrderId);
+                OrdersList.ThisOrder = AnOrder;
+                OrdersList.Update();
+            }
 
             Response.Redirect("OrdersList.aspx");
         } else

@@ -11,8 +11,12 @@
         <div>
             <asp:ListBox ID="lstOrdersList" runat="server" Height="500px" Width="460px"></asp:ListBox>
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+            <asp:Label ID="lblError" runat="server"></asp:Label>
             <asp:Image ID="Image1" runat="server" Height="100px" ImageAlign="Top" ImageUrl="~/Capture.PNG" style="margin-bottom: 0px" Width="200px" />
         </div>
+
     </form>
 </body>
 </html>

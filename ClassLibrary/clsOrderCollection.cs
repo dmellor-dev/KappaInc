@@ -11,6 +11,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblOrder__SelectAll");
+
             PopulateArray(DB);
             
         }
@@ -103,7 +104,9 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@ProductCode", ProductCode);
-            DB.Execute("sproc_tblOrderLine_FilterByProductCode");
+            DB.Execute("sproc_tblOrder_tblOrderLine_FilterByProductCode");
+
+
             PopulateArray(DB);
         }
 
@@ -112,12 +115,18 @@ namespace ClassLibrary
             Int32 Index = 0;
             Int32 RecordCount = 0;
             Int32 SearchOrderId = 0;
-            RecordCount = DB.Count;
 
+            
+
+            RecordCount = DB.Count;
+            mOrdersList = new List<clsOrders>();
+            //While there are records
             while (Index < RecordCount)
             {
+                //Create a blank order
                 clsOrders Orders = new clsOrders();
 
+                //Read in fields from current record and assign to tblOrder object attributes
                 Orders.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
                 SearchOrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
                 Orders.DispatchedStatus = Convert.ToBoolean(DB.DataTable.Rows[Index]["DispatchedStatus"]);

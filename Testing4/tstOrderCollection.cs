@@ -124,7 +124,7 @@ namespace Testing4
             clsOrderCollection AllOrder = new clsOrderCollection();
             clsOrders TestItem = new clsOrders();
             Int32 PrimaryKey = 0;
-            TestItem.OrderId = 99;
+            TestItem.OrderId = 89;
             TestItem.DeliveryAddress = "An Address";
             TestItem.DispatchedStatus = true;
             TestItem.UnitPrice = 5.99;
@@ -167,5 +167,30 @@ namespace Testing4
             FilteredOrders.ReportByProductCode("xxxxxxx");
             Assert.AreEqual(0, FilteredOrders.Count);
         }
+
+        [TestMethod]
+        public void ReportByProductCodeTestDataFound()
+        {
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            Boolean OK = true;
+
+            FilteredOrders.ReportByProductCode("YYY4321");
+            if (FilteredOrders.Count == 2)
+            {
+                if (FilteredOrders.OrdersList[0].OrderId != 155)
+                {
+                    OK = false;
+                }
+                if (FilteredOrders.OrdersList[1].OrderId != 156)
+                {
+                    OK = false;
+                }
+            } else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
     }
 }

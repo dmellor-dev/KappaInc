@@ -76,6 +76,7 @@ namespace Testing3
             clsStaff TestItem = new clsStaff();
             Int32 PrimaryKey = 0;
             //setting properties
+            TestItem.StaffId = 73571;
             TestItem.FirstName = "Joe";
             TestItem.LastName = "Bennet";
             TestItem.EmailAddress = "jb@email.com";
@@ -99,6 +100,7 @@ namespace Testing3
             clsStaff TestItem = new clsStaff();
             Int32 PrimaryKey = 0;
             //setting properties
+            TestItem.StaffId = 7357;
             TestItem.FirstName = "Joe";
             TestItem.LastName = "Bennet";
             TestItem.EmailAddress = "jb@email.com";
@@ -152,6 +154,23 @@ namespace Testing3
             //finding the record again
             Boolean Found = AllStaff.ThisStaffMember.Find(PrimaryKey);
             Assert.IsFalse(Found);
+        }
+        [TestMethod]
+        public void ReportByLastNameMethodOK()
+        {
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            // creating an instance of filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a blank string
+            FilteredStaff.ReportByLastName("");
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+        [TestMethod]
+        public void ReportByLastNameNoneFound()
+        {
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            FilteredStaff.ReportByLastName("xxxxx");
+            Assert.AreEqual(0, FilteredStaff.Count);
         }
     }
 }

@@ -60,4 +60,27 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to edit from the list";
         }
     }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.ReportByProductCode(txtFilter.Text);
+        lstOrdersList.DataSource = Orders.OrdersList;
+        lstOrdersList.DataValueField = "OrderId";
+        lstOrdersList.DataTextField = "ProductCode";
+
+        lstOrdersList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.ReportByProductCode("");
+        txtFilter.Text = "";
+        lstOrdersList.DataSource = Orders.OrdersList;
+        lstOrdersList.DataValueField = "OrderId";
+        lstOrdersList.DataTextField = "ProductCode";
+
+        lstOrdersList.DataBind();
+    }
 }

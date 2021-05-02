@@ -93,16 +93,30 @@ namespace ClassLibrary
         }
         public bool Find(int CustomerNo)
         {
-            mCustomerNo = 21;
-            mDateJoined = Convert.ToDateTime("16/09/2015");
-            mCurrentOrder = true;
-            mCustomerName = "Test Name";
-            mCustomerEmail = "Test Email@";
-            mCustomerBillingAddress = "Test Customer billing address";
-            mCustomerShippingAddress = "Test Customer Shippping Address";
-            return true;
-        }
+            // create an instance of the data connection 
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address no to search for 
+            DB.AddParameter("@CustomerNo", CustomerNo);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerNo");
+            //if one record is found (there should be either one or zero!)
+            if(DB.Count == 1)
 
+            {
+                mCustomerNo = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerNo"]);
+                mDateJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateJoined"]);
+                mCurrentOrder = Convert.ToBoolean(DB.DataTable.Rows[0]["CurrentOrder"]);
+                mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+                mCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
+                mCustomerBillingAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerBillingAddress"]);
+                mCustomerShippingAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerShippingAddress"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         
       
        

@@ -13,6 +13,7 @@
         <p>
             <asp:Label ID="lblCustomerNumber" runat="server" Text="Customer Number" width="170px"></asp:Label>
             <asp:TextBox ID="txtCustomerNumber" runat="server" width="245px"></asp:TextBox>
+            <asp:Button ID="BtnFind" runat="server" OnClick="BtnFind_Click" Text="Find" />
         </p>
         <p>
             <asp:Label ID="lblCustomerName" runat="server" Text="Customer Name " width="170px"></asp:Label>
@@ -37,7 +38,7 @@
             <asp:CheckBox ID="chkAnyCurrentOrders" runat="server" Text="Any Current Orders" />
         </p>
         <p>
-            <asp:Button ID="btnOK" runat="server" Height="34px" OnClick="btnOK_Click1" Text="OK" />
+            <asp:Button ID="btnOK" runat="server" Height="26px" OnClick="btnOK_Click1" Text="OK" />
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
         </p>
     </form>

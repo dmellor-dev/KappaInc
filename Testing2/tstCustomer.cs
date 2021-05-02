@@ -116,7 +116,7 @@ namespace Testing2
 
             Boolean Found = false;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
 
             Found = AnCustomer.Find(CustomerNo);
 
@@ -132,11 +132,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
            // AnCustomer.CustomerNo = CustomerNo;
             Found = AnCustomer.Find(CustomerNo);
 
-            if (AnCustomer.CustomerNo != 21)
+            if (AnCustomer.CustomerNo != 2)
             {
                 OK = false;
             }
@@ -152,11 +152,11 @@ public void TestDateJoinedFound()
 
             Boolean OK = true;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
 
             Found = AnCustomer.Find(CustomerNo);
 
-            if(AnCustomer.DateJoined != Convert.ToDateTime("16/09/2015"))
+            if(AnCustomer.DateJoined != Convert.ToDateTime("27/02/2020"))
             {
                 OK = false;
 
@@ -176,11 +176,11 @@ public void TestDateJoinedFound()
 
             Boolean OK = true;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
 
             Found = AnCustomer.Find(CustomerNo);
 
-            if(AnCustomer.CustomerName != "Test Name")
+            if(AnCustomer.CustomerName != "Doe Cameron")
             {
                 OK = false;
 
@@ -197,11 +197,11 @@ public void TestDateJoinedFound()
 
             Boolean OK = true;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
 
             Found = AnCustomer.Find(CustomerNo);
 
-            if(AnCustomer.CustomerEmail != "Test Email@")
+            if(AnCustomer.CustomerEmail != "doecameron@hotmail.com")
             {
                 OK = false;
 
@@ -217,11 +217,11 @@ public void TestDateJoinedFound()
 
             Boolean OK = true;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
 
             Found = AnCustomer.Find(CustomerNo);
 
-            if(AnCustomer.CustomerBillingAddress != "Test Customer billing address")
+            if(AnCustomer.CustomerBillingAddress != "69 Zoo Doe")
             {
                 OK = false;
             }
@@ -236,11 +236,11 @@ public void TestDateJoinedFound()
 
             Boolean OK = true;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
 
             Found = AnCustomer.Find(CustomerNo);
 
-            if(AnCustomer.CustomerShippingAddress != "Test Customer Shippping Address")
+            if(AnCustomer.CustomerShippingAddress != "69 Zoo Doe")
             {
                 OK = false;
 
@@ -256,7 +256,7 @@ public void TestDateJoinedFound()
 
             Boolean OK = true;
 
-            Int32 CustomerNo = 21;
+            Int32 CustomerNo = 2;
 
             Found = AnCustomer.Find(CustomerNo);
 

@@ -19,18 +19,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click1(object sender, EventArgs e)
     {
-        // this tells the viewer page what their value should be as text, converts any value to text/String
-            clsCustomer AnCustomer = new clsCustomer();
-            AnCustomer.CustomerNo = Int32.Parse(txtCustomerNumber.Text);
-            AnCustomer.CustomerName = txtCustomerName.Text;
-            AnCustomer.CustomerEmail = txtCustomerEmail.Text;
-            AnCustomer.CustomerBillingAddress = txtCustomerBillingAddress.Text;
-            AnCustomer.CustomerShippingAddress = txtCustomerShippingAddress.Text;
-            AnCustomer.DateWhenJoined = Convert.ToDateTime(txtDateWhenJoined.Text);
-        AnCustomer.CurrentOrder = chkAnyCurrentOrders.Checked;
+        clsCustomer AnCustomer = new clsCustomer();
+        string CustomerName = txtCustomerName.Text;
+        string CustomerEmail = txtCustomerEmail.Text;
+        string CustomerBillingAdress = txtCustomerBillingAddress.Text;
+        string CustomerShippingAdress = txtCustomerShippingAddress.Text;
+        string DateWhenJoined = txtDateWhenJoined.Text;
+        string Error = "";
+        Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerShippingAdress, CustomerBillingAdress, DateWhenJoined);
+        if(Error == "")
+ {
+            AnCustomer.CustomerName = CustomerName;
+            AnCustomer.CustomerName=CustomerEmail;
+            AnCustomer.CustomerShippingAddress = CustomerShippingAdress;
+            AnCustomer.CustomerBillingAddress = CustomerBillingAdress;
+            AnCustomer.DateWhenJoined = Convert.ToDateTime(DateWhenJoined);
             Session["AnCustomer"] = AnCustomer;
-            //this navigates to the viewer page
-            Response.Redirect("CustomerViewer.aspx");
+            Response.Write("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
         }
 
     protected void BtnFind_Click(object sender, EventArgs e)

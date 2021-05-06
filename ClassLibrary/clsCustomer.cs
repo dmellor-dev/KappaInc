@@ -121,15 +121,23 @@ namespace ClassLibrary
         public string Valid(string customerName, string customerEmail, string customerBillingAddress, string customerShippingAddress, string dateWhenJoined)
         {
             String Error = "";
-            DateTime Datetemp;
+            DateTime DateTemp;
+            if(customerName.Length == 0)
+            {
+                Error = Error + "The customer name may not be blank :";
+            }
+            if(customerName.Length>50)
+            {
+                Error = Error + "The customer name must be less than 50 characters";
+            }
             try
             {
-                Datetemp = Convert.ToDateTime(dateWhenJoined);
-                if (Datetemp < DateTime.Now.Date)
+                DateTemp = Convert.ToDateTime(dateWhenJoined);
+                if (DateTemp < DateTime.Now.Date)
                 {
                     Error = Error + "The date cannot be in the past :";
                 }
-                if (Datetemp > DateTime.Now.Date)
+                if (DateTemp > DateTime.Now.Date)
                 {
                     Error = Error + "The date cannot be in the future :";
                 }
@@ -137,6 +145,31 @@ namespace ClassLibrary
             catch
             {
                 Error = Error + "The date was not a valid date: ";
+            }
+            if(customerEmail.Length == 0)
+            {
+                Error = Error + "The customer email may not be blank";
+            }
+            if(customerEmail.Length>50)
+            {
+                Error = Error + "The customer email must be less than 50 characters";
+            }
+            if(customerBillingAddress.Length==0)
+            {
+                Error = Error + "The customer billing address may not be blank";
+
+            }
+            if(customerBillingAddress.Length>50)
+            {
+                Error = Error + "The customer billing address must be less than 50 characters";
+            }
+            if(customerShippingAddress.Length == 0)
+            {
+                Error = Error + "The customer shipping address may not be blank";
+            }
+            if (customerShippingAddress.Length >50)
+            {
+                Error = Error + "The customer shipping address must be less than 50 characters";
             }
             return Error;
         }

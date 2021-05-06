@@ -19,7 +19,7 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(AnCustomer.CustomerEmail);
         Response.Write(AnCustomer.CustomerBillingAddress);
         Response.Write(AnCustomer.CustomerShippingAddress);
-        Response.Write(AnCustomer.DateJoined);
+        Response.Write(AnCustomer.DateWhenJoined);
         Response.Write(AnCustomer.CurrentOrder);
     }
 }

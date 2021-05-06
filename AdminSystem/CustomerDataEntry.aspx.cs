@@ -26,7 +26,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnCustomer.CustomerEmail = txtCustomerEmail.Text;
             AnCustomer.CustomerBillingAddress = txtCustomerBillingAddress.Text;
             AnCustomer.CustomerShippingAddress = txtCustomerShippingAddress.Text;
-            AnCustomer.DateJoined = Convert.ToDateTime(txtDateWhenJoined.Text);
+            AnCustomer.DateWhenJoined = Convert.ToDateTime(txtDateWhenJoined.Text);
         AnCustomer.CurrentOrder = chkAnyCurrentOrders.Checked;
             Session["AnCustomer"] = AnCustomer;
             //this navigates to the viewer page
@@ -53,7 +53,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerEmail.Text = AnCustomer.CustomerEmail;
             txtCustomerBillingAddress.Text = AnCustomer.CustomerBillingAddress;
             txtCustomerShippingAddress.Text = AnCustomer.CustomerShippingAddress;
-            txtDateWhenJoined.Text = AnCustomer.DateJoined.ToString();
+            txtDateWhenJoined.Text = AnCustomer.DateWhenJoined.ToString();
             
         }
         else

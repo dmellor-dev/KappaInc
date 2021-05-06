@@ -7,6 +7,14 @@ namespace Testing2
     [TestClass]
     public class tstCustomer
     {
+        //good test data
+        //create some test data to pass to the method
+
+        string CustomerName = "Jefery";
+        string CustomerEmail = "Jefery@gmail.com";
+        string CustomerBillingAddress = "69 Zoo Doe";
+        string CustomerShippingAddress = "69 Zoo Doe";
+        string DateWhenJoined = DateTime.Now.Date.ToString();
         [TestMethod]
         public void InstanceOk()
         {
@@ -35,9 +43,9 @@ namespace Testing2
 
             DateTime TestData = DateTime.Now.Date;
 
-            AnCustomer.DateJoined = TestData;
+            AnCustomer.DateWhenJoined = TestData;
 
-            Assert.AreEqual(AnCustomer.DateJoined, TestData);
+            Assert.AreEqual(AnCustomer.DateWhenJoined, TestData);
 
 
         }
@@ -144,7 +152,7 @@ namespace Testing2
             Assert.IsTrue(OK);
         }
 [TestMethod]
-public void TestDateJoinedFound()
+public void TestDateWhenJoinedFound()
         {
             clsCustomer AnCustomer = new clsCustomer();
 
@@ -156,7 +164,7 @@ public void TestDateJoinedFound()
 
             Found = AnCustomer.Find(CustomerNo);
 
-            if(AnCustomer.DateJoined != Convert.ToDateTime("27/02/2020"))
+            if(AnCustomer.DateWhenJoined != Convert.ToDateTime("27/02/2020"))
             {
                 OK = false;
 
@@ -266,5 +274,93 @@ public void TestDateJoinedFound()
             }
             Assert.IsTrue(OK);
         }
-    }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string varibale to store any error message
+            String Error = "";
+            Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerBillingAddress, CustomerShippingAddress, DateWhenJoined);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateWhenJoinedExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error messages
+            String Error = "";
+            //create a variable to store any test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            string DateWhenJoined = TestDate.ToString();
+            //invoke method
+            Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerBillingAddress, CustomerShippingAddress, DateWhenJoined);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateWhenJoinedMinLessOne()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string DateWhenJoined = TestDate.ToString();
+            Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerBillingAddress, CustomerShippingAddress, DateWhenJoined);
+            Assert.AreNotEqual(Error, " ");
+        }
+           [TestMethod]
+           public void DateWhenJoinedMin()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DateWhenJoined = TestDate.ToString();
+            Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerBillingAddress, CustomerShippingAddress, DateWhenJoined);
+            Assert.AreNotEqual(Error, " ");
+        }
+        [TestMethod]
+        public void DateWhenJoinedMinPlusOne()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = " ";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DateWhenJoined = TestDate.ToString();
+            Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerBillingAddress, CustomerShippingAddress, DateWhenJoined);
+            Assert.AreNotEqual(Error, " ");
+        }
+        [TestMethod]
+        public void DateWhenJoinedExtermeMax()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(100);
+            string DateWhenJoined = TestDate.ToString();
+            Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerBillingAddress, CustomerShippingAddress, DateWhenJoined);
+            Assert.AreNotEqual(Error, " ");
+        }
+        [TestMethod]
+        public void DateWhenJoinedInvalidData()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            String Error = "";
+            string DateWhenJoined = "this is not a date!";
+            Error = AnCustomer.Valid(CustomerName, CustomerEmail, CustomerBillingAddress, CustomerShippingAddress, DateWhenJoined);
+            Assert.AreNotEqual(Error, " ");
+        }
+                }
+
 }

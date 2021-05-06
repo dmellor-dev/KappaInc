@@ -17,16 +17,16 @@ namespace ClassLibrary
             }
 
         }
-        private DateTime mDateJoined;
-            public DateTime DateJoined
+        private DateTime mDateWhenJoined;
+        public DateTime DateWhenJoined
         {
             get
             {
-                return mDateJoined;
+                return mDateWhenJoined;
             }
             set
             {
-                mDateJoined = value;
+                mDateWhenJoined = value;
             }
         }
         private Boolean mCurrentOrder;
@@ -100,11 +100,11 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_FilterByCustomerNo");
             //if one record is found (there should be either one or zero!)
-            if(DB.Count == 1)
+            if (DB.Count == 1)
 
             {
                 mCustomerNo = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerNo"]);
-                mDateJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateJoined"]);
+                mDateWhenJoined = Convert.ToDateTime(DB.DataTable.Rows[0]["DateWhenJoined"]);
                 mCurrentOrder = Convert.ToBoolean(DB.DataTable.Rows[0]["CurrentOrder"]);
                 mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
                 mCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
@@ -117,14 +117,29 @@ namespace ClassLibrary
                 return false;
             }
         }
-        
-      
-       
-       
-        
-        
-      
 
-      
+        public string Valid(string customerName, string customerEmail, string customerBillingAddress, string customerShippingAddress, string dateWhenJoined)
+        {
+            String Error = "";
+            DateTime Datetemp;
+            try
+            {
+                Datetemp = Convert.ToDateTime(dateWhenJoined);
+                if (Datetemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past :";
+                }
+                if (Datetemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future :";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a valid date: ";
+            }
+            return Error;
+        }
+        
     }
 }

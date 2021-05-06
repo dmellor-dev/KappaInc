@@ -30,12 +30,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if(Error == "")
  {
             AnCustomer.CustomerName = CustomerName;
-            AnCustomer.CustomerName=CustomerEmail;
+            AnCustomer.CustomerEmail=CustomerEmail;
             AnCustomer.CustomerShippingAddress = CustomerShippingAdress;
             AnCustomer.CustomerBillingAddress = CustomerBillingAdress;
             AnCustomer.DateWhenJoined = Convert.ToDateTime(DateWhenJoined);
-            Session["AnCustomer"] = AnCustomer;
-            Response.Write("CustomerViewer.aspx");
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            AnCustomer.CurrentOrder = chkAnyCurrentOrders.Checked;
+            CustomerList.ThisCustomer = AnCustomer;
+            CustomerList.Add();
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {

@@ -172,5 +172,28 @@ namespace Testing3
             FilteredStaff.ReportByLastName("xxxxx");
             Assert.AreEqual(0, FilteredStaff.Count);
         }
+        [TestMethod]
+        public void ReportByLastNameTestDataFound()
+        {
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            Boolean OK = true;
+            FilteredStaff.ReportByLastName("Bziuk");
+            if(FilteredStaff.Count == 2)
+            {
+                if(FilteredStaff.StaffList[0].StaffId != 1)
+                {
+                    OK = false;
+                }
+                if(FilteredStaff.StaffList[1].StaffId != 73572)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }

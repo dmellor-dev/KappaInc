@@ -137,6 +137,46 @@ public void CustomerListOK()
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
        
+        [TestMethod]
+
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.CurrentOrder = true;
+            TestItem.CustomerNo = 1;
+            TestItem.CustomerName = "Jeff";
+            TestItem.CustomerEmail = "Jeff@gmail.com";
+            TestItem.CustomerShippingAddress = "23 Doe Zone";
+            TestItem.CustomerBillingAddress = "23 Doe Zone";
+            TestItem.DateWhenJoined = DateTime.Now.Date;
+            AllCustomers.ThisCustomer = TestItem;
         
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerNo = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+public void ReportByShippingAddressMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByCustomerShippingAddress("");
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByShippingAddressNoneFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByCustomerShippingAddress("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
     }
 }

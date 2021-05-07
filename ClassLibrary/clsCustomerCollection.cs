@@ -46,24 +46,11 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
+            
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblCustomer_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsCustomer AnCustomer = new clsCustomer();
-                AnCustomer.CurrentOrder = Convert.ToBoolean(DB.DataTable.Rows[Index]["CurrentOrder"]);
-                AnCustomer.CustomerNo = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerNo"]);
-                AnCustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
-                AnCustomer.CustomerEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustomerEmail"]);
-                AnCustomer.CustomerBillingAddress = Convert.ToString(DB.DataTable.Rows[Index]["CustomerBillingAddress"]);
-                AnCustomer.CustomerShippingAddress = Convert.ToString(DB.DataTable.Rows[Index]["CustomerShippingAddress"]);
-                mCustomerList.Add(AnCustomer);
-                Index++;
-
-            }
+            PopulateArray(DB);
+           
             
 
 
@@ -96,6 +83,47 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerShippingAddress", mThisCustomer.CustomerShippingAddress);
             DB.AddParameter("@DateWhenJoined", mThisCustomer.DateWhenJoined);
             DB.Execute("sproc_tblCustomer_Update");
+        }
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerNo", mThisCustomer.CustomerNo);
+            DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void ReportByCustomerShippingAddress(string CustomerShippingAddress)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerShippingAddress", CustomerShippingAddress);
+            //execute the store procedure 
+            DB.Execute("sproc_tblCustomer_FilterByShippingAddress");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mCustomerList = new List<clsCustomer>();
+            while (Index < RecordCount)
+            {
+                clsCustomer AnCustomer = new clsCustomer();
+
+                AnCustomer.CurrentOrder = Convert.ToBoolean(DB.DataTable.Rows[Index]["CurrentOrder"]);
+                AnCustomer.CustomerNo = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerNo"]);
+                AnCustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                AnCustomer.CustomerEmail = Convert.ToString(DB.DataTable.Rows[Index]["CustomerEmail"]);
+                AnCustomer.CustomerBillingAddress = Convert.ToString(DB.DataTable.Rows[Index]["CustomerBillingAddress"]);
+                AnCustomer.CustomerShippingAddress = Convert.ToString(DB.DataTable.Rows[Index]["CustomerShippingAddress"]);
+                mCustomerList.Add(AnCustomer);
+                Index++;
+            }
+        }
+
+        public void ReportByShippingAddress(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
